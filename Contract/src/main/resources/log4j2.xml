@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="OFF">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}][%c][%t][%level][%m]%n"/>
+        </Console>
+        <RollingRandomAccessFile name="debug" fileName="${log_file_path}/${application_name}/debug/${application_name}_debug.log" append="true" filePattern="${log_file_path}/${application_name}/debug/${application_name}_debug_%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}][%c][%t][%level][%m]%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="24" modulate="true"/>
+            </Policies>
+        </RollingRandomAccessFile>
+        <File name="error" fileName="${log_file_path}/${application_name}/error/${application_name}_error.log">
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}][%c][%t][%level][%m]%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <AsyncRoot level="debug" additivity="false">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="debug"/>
+            <AppenderRef ref="error"/>
+        </AsyncRoot>
+    </Loggers>
+</Configuration>

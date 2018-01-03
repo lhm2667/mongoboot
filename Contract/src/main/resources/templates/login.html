@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>
+        <h1>login</h1>
+    </p>
+
+<p>
+    <h1 th:text="${#session.getId()}"></h1>
+</p>
+<p>
+    <h1 th:text="${#session.getAttribute('UUID')}">=================>>>></h1>
+</p>
+<p>
+    <input type="button" value="button" onclick="getCookie()" />
+</p>
+    <span th:utext="${htmlcontent}"></span><span th:utext="${htmlcontent1}"></span><span th:utext="${htmlcontent2}"></span>
+</body>
+<script th:inline="javascript">
+    function getCookie()
+    {
+        console.log(/*[[${#session.getId()}]]*/);
+        console.log(/*[[${htmlcontent}]]*/);
+    }
+</script>
+</html>
